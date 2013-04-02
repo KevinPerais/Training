@@ -17,10 +17,10 @@ int main()
     
     sigemptyset(&listeSignaux);
     sigaddset(&listeSignaux, SIGINT);
-    sigaddset(&listeSignaux, SIGUSR2);
+    sigaddset(&listeSignaux, SIGUSR1);
     
     
-    // Bloquage du signal USR2 et INT.
+    // Bloquage du signal USR1 et INT.
     sigprocmask(SIG_BLOCK, &listeSignaux, NULL);
     sleep(15);
     
@@ -30,9 +30,9 @@ int main()
     
     
     // Affichage du signal reçu.
-    if (sigismember(&listeSignauxBloques, SIGUSR2))
+    if (sigismember(&listeSignauxBloques, SIGUSR1))
     {
-        printf("Signal USR2 envoyé !\n");
+        printf("Signal USR1 envoyé !\n");
     }
     if (sigismember(&listeSignauxBloques, SIGINT))
     {
@@ -40,7 +40,7 @@ int main()
     }
     
     
-    // Déblocage du signal USR2 et INT.
+    // Déblocage du signal USR1 et INT.
     printf("Déblocage des signaux.\n");
     sigprocmask(SIG_UNBLOCK, &listeSignaux, NULL);
     sleep(15);
